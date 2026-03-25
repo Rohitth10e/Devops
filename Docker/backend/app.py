@@ -5,6 +5,7 @@ import dotenv, os
 dotenv.load_dotenv()
 app = Flask(__name__)
 
+print("Connecting with:", os.getenv("MONGO_URI"))
 client = MongoClient(os.getenv("MONGO_URI"))
 db = client["test_flask"]
 collection = db["form"]
@@ -20,6 +21,11 @@ def submit():
         return jsonify({"message": "Data submitted successfully"}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+@app.route("/test")
+def test():
+    result = collection.insert_one({"msg": "hello"})
+    return {"inserted_id": str(result.inserted_id)}
 
 
 if __name__ == "__main__":

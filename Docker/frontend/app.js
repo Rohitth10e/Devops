@@ -7,16 +7,26 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.set("view engine", "ejs");
 
+const BACKEND_URL = process.env.BACKEND_URL || "http://localhost:5000";
+
 app.get("/", (req, res) => {
   res.render("form", { error: null });
 });
+
+app.get("/test",(req, res)=>{
+  return axios.get(`${BACKEND_URL}/test`).then(response => {
+    res.send(`Test successful, inserted ID: ${response.data.inserted_id}`);
+  }).catch(err => {
+    res.send(`Test failed: ${err.message}`);
+  });
+})
 
 app.post("/submit", async (req, res) => {
   try {
     if (!req.body) {
       return res.render("form", { error: "No data provided" });
     }
-    const response = await axios.post("http://localhost:5000/submit", req.body); // use backend if in Docker
+    const response = await axios.post(`${BACKEND_URL}/submit`, req.body); // use backend if in Docker
     if (response.status === 200) {
       res.redirect("/success");
     }
