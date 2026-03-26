@@ -31,7 +31,11 @@ Linux command-line practice materials.
 - **Key Concepts**: Linux fundamentals, CLI proficiency, system operations
 
 ### **AWS/**
-Cloud infrastructure learning and deployment exercises.
+Cloud infrastructure and EC2 deployment exercises.
+- **aws-demo.config** - EC2 key pair management, SSH connections, file transfer setup
+- **backend/** & **frontend/** - Containerized apps ready for EC2 deployment
+- **docker-compose.yml** - Stack configuration for cloud deployment
+- **Key Concepts**: EC2 instances, key pairs, SSH authentication, secure file transfer (SCP), instance configuration
 
 ---
 
@@ -70,10 +74,10 @@ python app.py
 2. **Python & Bash Scripting** → Automation, task scripting
 3. **Web Applications** → Flask + MongoDB standalone setup
 4. **Containerization** → Docker, multi-container orchestration
-5. **Cloud Deployment** → AWS, Azure (coming soon)
-6. **Kubernetes**
-7. **Terraform**
-8. **Jenkins**
+5. **AWS Cloud** → EC2 instances, key pairs, SSH/SCP, instance management
+6. **Kubernetes** → Container orchestration at scale
+7. **Terraform** → Infrastructure as Code
+8. **Jenkins** → CI/CD pipelines
 ---
 
 ## Tech Stack
@@ -82,6 +86,8 @@ python app.py
 - **Frontend**: Express.js (Node.js)
 - **Database**: MongoDB
 - **Container**: Docker & Docker Compose
+- **Cloud**: AWS EC2
+- **IaC**: Terraform, Jenkins (in progress)
 
 ---
 
@@ -90,6 +96,9 @@ python app.py
 - Use `.env-example` as template for environment configuration
 - All services communicate via `demo-network` bridge
 - Volume mounts enable live code reloading during development
+- AWS EC2 setup: Manage key pairs securely, use SSH for remote access, SCP for file transfers
+- Docker images in AWS/ ready for EC2 deployment
+- SSH Configuration: `ssh -i path/to/key.pem ubuntu@ec2-public-ip`
 - Service dependencies ensure proper startup order
 - Scalable for multi-environment deployments (dev/staging/prod)
 
