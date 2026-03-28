@@ -31,11 +31,20 @@ Linux command-line practice materials.
 - **Key Concepts**: Linux fundamentals, CLI proficiency, system operations
 
 ### **AWS/**
-Cloud infrastructure and EC2 deployment exercises.
+Cloud infrastructure: from EC2 to serverless ECS Fargate deployment.
 - **aws-demo.config** - EC2 key pair management, SSH connections, file transfer setup
-- **backend/** & **frontend/** - Containerized apps ready for EC2 deployment
-- **docker-compose.yml** - Stack configuration for cloud deployment
-- **Key Concepts**: EC2 instances, key pairs, SSH authentication, secure file transfer (SCP), instance configuration
+- **backend/** & **frontend/** - Containerized apps (Flask, Node.js) deployed to AWS ECS Fargate
+- **docker-compose.yml** - Local docker-compose stack (foundation for cloud deployment)
+- **notes/Ecs.md** - Full-stack AWS ECS Fargate deployment guide with Service Connect and MongoDB Atlas
+- **Key Concepts**: 
+  - **EC2**: Key pairs, SSH authentication, secure file transfer (SCP)
+  - **ECS Fargate**: Serverless container orchestration, Task Definitions, IAM Task Execution Roles
+  - **ECR**: Private container registries, image management
+  - **Service Discovery**: ECS Service Connect for internal DNS resolution between microservices
+  - **Networking**: Security Groups, VPC, service-to-service communication
+  - **Databases**: MongoDB Atlas for cloud-managed databases
+  - **Logging**: CloudWatch for centralized application logs
+  - **Cost Optimization**: Fargate Spot instances, resource sizing (0.25 vCPU minimum)
 
 ---
 
@@ -74,20 +83,22 @@ python app.py
 2. **Python & Bash Scripting** → Automation, task scripting
 3. **Web Applications** → Flask + MongoDB standalone setup
 4. **Containerization** → Docker, multi-container orchestration
-5. **AWS Cloud** → EC2 instances, key pairs, SSH/SCP, instance management
-6. **Kubernetes** → Container orchestration at scale
-7. **Terraform** → Infrastructure as Code
-8. **Jenkins** → CI/CD pipelines
+5. **AWS Cloud - EC2** → Key pairs, SSH/SCP, instance management
+6. **AWS Cloud - Fargate** → Serverless container orchestration, ECS, ECR, Service Connect ✓
+7. **Kubernetes** → Container orchestration at scale (planned)
+8. **Terraform** → Infrastructure as Code (planned)
+9. **Jenkins** → CI/CD pipelines (planned)
 ---
 
 ## Tech Stack
 
 - **Backend**: Flask (Python)
 - **Frontend**: Express.js (Node.js)
-- **Database**: MongoDB
+- **Database**: MongoDB (local), MongoDB Atlas (cloud)
 - **Container**: Docker & Docker Compose
-- **Cloud**: AWS EC2
-- **IaC**: Terraform, Jenkins (in progress)
+- **Cloud**: AWS (ECS Fargate, ECR, IAM, VPC, CloudWatch, Security Groups)
+- **Service Discovery**: ECS Service Connect
+- **IaC**: Terraform, Jenkins (planned)
 
 ---
 
@@ -97,7 +108,32 @@ python app.py
 - All services communicate via `demo-network` bridge
 - Volume mounts enable live code reloading during development
 - AWS EC2 setup: Manage key pairs securely, use SSH for remote access, SCP for file transfers
-- Docker images in AWS/ ready for EC2 deployment
+
+---
+
+## AWS ECS Fargate - Key Learnings
+
+### Architecture Decision
+- **Why Fargate?** Serverless approach eliminates EC2 instance management. Focus on applications, not infrastructure patching/maintenance.
+
+### Service Discovery
+- **ECS Service Connect** provides stable internal DNS resolution (e.g., `http://backend:5000`) for service-to-service communication
+- Replaces hardcoded volatile IPs and mimics Docker Compose networking in the cloud
+
+### Security Implementation
+- **IAM Task Execution Roles** - Least privilege access for ECR pulls and CloudWatch logging
+- **Security Groups** - Firewall rules restrict backend (TCP 5000) to frontend traffic only
+- **Network Isolation** - Backend not exposed to public internet
+
+### Database Management
+- **MongoDB Atlas** - Cloud-managed database reduces operational overhead
+- Connection strings injected via task environment variables
+
+### Cost Optimization (Mumbai Region)
+- Use smallest Fargate task sizes (0.25 vCPU) to minimize compute costs
+- **Fargate Spot** instances can reduce costs by up to 70% for non-critical workloads
+- Monitor ECR storage usage to stay within free tier limits (~500 MB)
+- Account for Public IP charges (~$0.005/hr per IP)
 - SSH Configuration: `ssh -i path/to/key.pem ubuntu@ec2-public-ip`
 - Service dependencies ensure proper startup order
 - Scalable for multi-environment deployments (dev/staging/prod)
