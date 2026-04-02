@@ -30,6 +30,11 @@ Linux command-line practice materials.
 - Command usage, file management, system administration basics
 - **Key Concepts**: Linux fundamentals, CLI proficiency, system operations
 
+### **Kubernetes/**
+Container orchestration fundamentals and cluster management.
+- **notes/Query.md** - Core K8s concepts: differences from Docker, container orchestration principles, K8s vs AWS ECS comparison
+- **Key Concepts**: Cluster architecture, nodes, control plane, auto-scaling, self-healing, load balancing, container orchestration
+
 ### **AWS/**
 Cloud infrastructure: from EC2 to serverless ECS Fargate deployment.
 - **aws-demo.config** - EC2 key pair management, SSH connections, file transfer setup
@@ -79,13 +84,13 @@ python app.py
 
 ## Learning Path
 
-1. **Linux Fundamentals** → System basics, CLI proficiency
-2. **Python & Bash Scripting** → Automation, task scripting
-3. **Web Applications** → Flask + MongoDB standalone setup
-4. **Containerization** → Docker, multi-container orchestration
-5. **AWS Cloud - EC2** → Key pairs, SSH/SCP, instance management
+1. **Linux Fundamentals** → System basics, CLI proficiency ✓
+2. **Python & Bash Scripting** → Automation, task scripting ✓
+3. **Web Applications** → Flask + MongoDB standalone setup ✓
+4. **Containerization** → Docker, multi-container orchestration ✓
+5. **AWS Cloud - EC2** → Key pairs, SSH/SCP, instance management ✓
 6. **AWS Cloud - Fargate** → Serverless container orchestration, ECS, ECR, Service Connect ✓
-7. **Kubernetes** → Container orchestration at scale (planned)
+7. **Kubernetes** → Container orchestration at scale (In Progress)
 8. **Terraform** → Infrastructure as Code (planned)
 9. **Jenkins** → CI/CD pipelines (planned)
 ---
