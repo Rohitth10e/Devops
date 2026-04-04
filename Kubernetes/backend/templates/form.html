@@ -1,0 +1,16 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Submit Data</title>
+</head>
+<body>
+    <form method="POST">
+        <input type="text" name="name" placeholder="Enter name" required><br>
+        <input type="email" name="email" placeholder="Enter email" required><br>
+        <button type="submit">Submit</button>
+    </form>
+    {% if error %}
+        <p style="color:red;">Error: {{ error }}</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      imagePullSecrets:
+        - name: ecr-secret
+      containers:
+      - name: frontend
+        image: 219602683617.dkr.ecr.ap-south-1.amazonaws.com/frontend:latest
+        env:
+        - name: BACKEND_URL
+          value: "http://backend-service:5000"
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000
