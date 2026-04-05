@@ -31,9 +31,10 @@ Linux command-line practice materials.
 - **Key Concepts**: Linux fundamentals, CLI proficiency, system operations
 
 ### **Kubernetes/**
-Container orchestration fundamentals and cluster management.
+Container orchestration fundamentals, cluster management, and practical deployment.
 - **notes/Query.md** - Core K8s concepts: differences from Docker, container orchestration principles, K8s vs AWS ECS comparison
-- **Key Concepts**: Cluster architecture, nodes, control plane, auto-scaling, self-healing, load balancing, container orchestration
+- **notes/notes.md** - Complete learning guide with setup instructions, 9 YAML manifests for deploying Flask + Node.js + MongoDB stack, troubleshooting, and practical workflows
+- **Key Concepts**: Cluster architecture, Pods, Deployments, Services, ConfigMaps, Secrets, networking, local setup (Docker Desktop/Minikube), rolling updates, self-healing, auto-scaling
 
 ### **AWS/**
 Cloud infrastructure: from EC2 to serverless ECS Fargate deployment.
@@ -90,7 +91,7 @@ python app.py
 4. **Containerization** → Docker, multi-container orchestration ✓
 5. **AWS Cloud - EC2** → Key pairs, SSH/SCP, instance management ✓
 6. **AWS Cloud - Fargate** → Serverless container orchestration, ECS, ECR, Service Connect ✓
-7. **Kubernetes** → Container orchestration at scale (In Progress)
+7. **Kubernetes** → Container orchestration at scale (In Progress - Setup & Deployment Guides Complete ✓)
 8. **Terraform** → Infrastructure as Code (planned)
 9. **Jenkins** → CI/CD pipelines (planned)
 ---
@@ -101,8 +102,9 @@ python app.py
 - **Frontend**: Express.js (Node.js)
 - **Database**: MongoDB (local), MongoDB Atlas (cloud)
 - **Container**: Docker & Docker Compose
+- **Orchestration**: Kubernetes (K8s), AWS ECS Fargate, Docker Compose
 - **Cloud**: AWS (ECS Fargate, ECR, IAM, VPC, CloudWatch, Security Groups)
-- **Service Discovery**: ECS Service Connect
+- **Service Discovery**: Kubernetes Services, ECS Service Connect, DNS
 - **IaC**: Terraform, Jenkins (planned)
 
 ---
