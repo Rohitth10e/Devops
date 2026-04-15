@@ -3,4 +3,11 @@
 __pycache__/
 node_modules/
 *.config 
-.terraform*
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+*.pem
+*terraform
+*.sh
